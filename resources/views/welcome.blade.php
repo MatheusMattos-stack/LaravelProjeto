@@ -1,27 +1,31 @@
 @extends('layouts.main')
+
 @section('title', 'HDC Events')
+
 @section('content')
 
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-
-        <title>Laravel</title>
-
-        <link rel="stylesheet" href="/css/styles.css">
-        <script src="/js/scripts.js"></script>
-
-    </head>
-    <body class="antialiased">
-            <h1>Algum Titulo</h1>
-            <img src="/img/banner.jpg" alt="Banner">
-            @if(10 > 5)
-                <p>A condição é true</p>
-            @endif   
-            <p>{{ $nome }}</p>
-    </body>
-</html>
+<div id="search-container" class="col-md-12">
+    <h1>Busque um evento</h1>
+    <form action="">
+        <input type="text" id="search" name="search" class="form-control" placeholder="Procurar...">
+    </form>
+</div>
+<div id="events-container" class="col-md-12">
+    <h2>Próximos Eventos</h2>
+    <p class="subtitle">Veja os eventos dos próximos dias</p>
+    <div id="cards-container" class="row">
+        @foreach($events as $event)
+        <div class="card col-md-3">
+            <img src="/img/event_placeholder.jpg" alt="{{ $event->title }}">
+            <div class="card-body">
+                <p class="card-date">10/09/2020</p>
+                <h5 class="card-title">{{ $event->title }}</h5>
+                <p class="card-participants">X Participantes</p>
+                <a href="#" class="btn btn-primary">Saber mais</a>
+            </div>
+        </div>
+        @endforeach
+    </div>
+</div>
 
 @endsection
